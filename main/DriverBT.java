@@ -1,3 +1,5 @@
+package project3;
+
 
 public class DriverBT 
 {
@@ -74,10 +76,32 @@ public class DriverBT
       System.out.println();
 	} // end createTree
 	
+
+	/*
+	20 pts) Task 4: Implement the following method to create the 2nd testing example in the client program
+
+    In “DriverBT.java”
+        public static void createTree2(BinaryTree<String> tree)
+            Note: this method hardcodes the following tree structure with given value to each node. (Hint: please study the createTree1() method of the client program to see how a tree is created)
+
+	*/
+	
 	/**-------------------------------------------------------------------- */
 	/**Task 4: Create a tree case as shown in assignment 3*/
 	public static void createTree2(BinaryTree<String> tree)
 	{ 
+		// Leaves
+		BinaryTree<String> bTree = new BinaryTree<>("B");
+		BinaryTree<String> fTree = new BinaryTree<>("F");
+		BinaryTree<String> gTree = new BinaryTree<>("G");
+		BinaryTree<String> hTree = new BinaryTree<>("H");
+		
+		// Subtrees:
+		BinaryTree<String> eTree = new BinaryTree<>("E", gTree, hTree);
+		BinaryTree<String> dTree = new BinaryTree<>("D", fTree, null);
+		BinaryTree<String> cTree = new BinaryTree<>("C", dTree, eTree);
+		
+		tree.setTree("A", bTree, cTree);
 
 	} // end createTree2
 
