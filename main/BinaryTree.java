@@ -16,6 +16,51 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
    {
       initializeTree(rootData, leftTree, rightTree);
    } // end constructor
+   
+    public BinaryTree(String preorderString, String inorderString) {
+      //splits strings into string arrays without empty space in the front
+      String[] preorder = preorderString.split("(?!^)");
+      String[] inorder = inorderString.split("(?!^)");
+      
+      
+      int middle = 0;
+      String preorderbeg = "";
+      String inorderbeg = "";
+      String preorderend = "";
+      String inorderend = "";
+      T rootData;
+      
+      if (preorder.length > 1) {
+         //finds where preorder value is in the inorder traversal
+         for (int i = 0; i < preorder.length; i++) {
+            if (preorder[0].equals(inorder[i])) {
+               middle = i;
+               break;
+            }
+         }
+         //creates the new strings for preorder and inorder
+         for (int i = 1; i < middle + 1; i++) {
+            preorderbeg += (preorder[i]);
+         }
+         for (int i = 0; i < middle; i++) {
+            inorderbeg += inorder[i];
+         }
+         for (int i = middle+1; i < preorder.length; i++) {
+            preorderend += preorder[i];
+            inorderend += preorder[i];
+         }
+         //recursively calls BinaryTree to create the left tree using the new preorder and inorder strings
+         BinaryTree<T> leftTree = new BinaryTree<>(preorderbeg, inorderbeg);
+         //once the left trees are created it recursively creates the right trees
+         BinaryTree<T> rightTree = new BinaryTree<>(preorderend, inorderend);
+         rootData = (T) preorder[0];
+         //creates the tree with the top root and the subtrees
+         initializeTree(rootData, leftTree, rightTree);
+         //preorder: ABDEC
+         //inorder: DBEAC
+         //should be D E B C A
+      } 
+   }
 
    public void setTree(T rootData, BinaryTreeInterface<T> leftTree,
                                    BinaryTreeInterface<T> rightTree)
