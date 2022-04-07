@@ -1,28 +1,28 @@
-package project3;
+package project3_;
+
+
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Test;
 
-public class TreeTest {
 
+public class TreeTest {
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     /**Tests postorderTraverse with a normal binary tree */
     @Test
     public void testPostorderTraverse() {
         BinaryTree <String> a = new BinaryTree<>("a");
         BinaryTree <String> b = new BinaryTree<>("b");
         BinaryTree <String> c = new BinaryTree<>("c", a, b);
-        BinaryTree <String> d = new BinaryTree<>("d");
-        BinaryTree <String> e = new BinaryTree<>("e", c, d);
-        e.postorderTraverse();
+        System.setOut(new PrintStream(outContent));
+        c.postorderTraverse();
+        assertEquals("a\r\nb\r\nc", outContent.toString().trim());
     }
 
-    /** Tests postorderTraverse with an empty binary tree */
-    @Test
-    public void testPostorderTraverseEmpty() {
-        BinaryTree <String> e = new BinaryTree<>(null);
-        e.postorderTraverse();
-    }
 
     /**Tests PostorderTraverse_callBinaryNodeMethod */
     @Test
@@ -30,19 +30,12 @@ public class TreeTest {
         BinaryTree <String> a = new BinaryTree<>("a");
         BinaryTree <String> b = new BinaryTree<>("b");
         BinaryTree <String> c = new BinaryTree<>("c", a, b);
-        BinaryTree <String> d = new BinaryTree<>("d");
-        BinaryTree <String> e = new BinaryTree<>("e", c, d);
-        e.postorderTraverse_callBinaryNodeMethod();
-
+        System.setOut(new PrintStream(outContent));
+        c.postorderTraverse_callBinaryNodeMethod();
+        assertEquals("a\r\nb\r\nc", outContent.toString().trim());
+        
     }
 
-    /**Tests PostorderTraverse_callBinaryNodeMethod with an empty tree */
-    @Test
-    public void testPostorderTraverse_callBinaryNodeMethodEmpty() {
-        BinaryTree <String> e = new BinaryTree<>(null);
-        e.postorderTraverse_callBinaryNodeMethod();
-
-    }
 
     /** Tests PostorderTraverse_binaryNodeMethod with normal binary nodes*/
     @Test
@@ -50,19 +43,11 @@ public class TreeTest {
         BinaryNode <String> a = new BinaryNode<>("a");
         BinaryNode <String> b = new BinaryNode<>("b");
         BinaryNode <String> c = new BinaryNode<>("c", a, b);
-        BinaryNode <String> d = new BinaryNode<>("d");
-        BinaryNode <String> e = new BinaryNode<>("e", c, d);
-        e.postorderTraverse_binaryNodeMethod();
-
+        System.setOut(new PrintStream(outContent));
+        c.postorderTraverse_binaryNodeMethod();
+        assertEquals("a\r\nb\r\nc", outContent.toString().trim());
     }
 
-     /** Tests PostorderTraverse_binaryNodeMethod with an empty binary node  */
-     @Test
-     public void testPostorderTraverse_binaryNodeMethodEmpty() {
-         BinaryNode <String> e = new BinaryNode<>(null);
-         e.postorderTraverse_binaryNodeMethod();
- 
-     }
 
     /** Tests getHeight_callBinaryNodeMethod with a normal binary tree */
     @Test
